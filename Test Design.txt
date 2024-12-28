@@ -1,0 +1,113 @@
+Test Design and Writing Document
+
+Target Application: Online Banking System
+
+
+Example Test Case 1: 
+Test Case Name: Verify User Login
+Test Case Description: Ensure that a registered user can successfully log in with valid credentials.
+	Preconditions:
+		The user has an existing account with the bank.
+		The user has the correct username and password.
+		The website is accessible.
+	Test Steps:
+		1. Navigate to the online banking login page.
+		2. Enter the correct username in the "Username" field.
+		3. Enter the correct password in the "Password" field.
+		4. Click the "Login" button.
+	Expected Result:
+		The user is successfully logged in and redirected to the account dashboard.
+		The user’s name appears at the top of the dashboard, indicating the login was successful.
+	Postconditions:
+		The user is logged into their account.
+	Priority: High
+
+Example Test Case 2 : 
+Test Case Name: Verify Fund Transfer Between Accounts
+Test Case Description: Ensure that a user can successfully transfer funds between their own accounts within the bank.
+	Preconditions:
+		The user is logged in and has multiple accounts (e.g., checking and savings).
+		The user has sufficient balance in the source account.
+	Test Steps:
+		1. Navigate to the "Transfers" section of the dashboard.
+		2. Select the "From" account and "To" account.
+		3. Enter a transfer amount (e.g., $100).
+		4. Confirm the transfer details and click the "Transfer" button.
+	Expected Result:
+		The transaction is processed, and a success message ("Transfer Successful") is displayed.
+		The balance of both accounts is updated correctly.
+	Postconditions:
+		The transfer is recorded in the transaction history for both accounts.
+	Priority: Critical
+
+Example Test Case 3: 
+Test Case Name: Verify Account Balance Inquiry
+Test Case Description: Ensure that the user can successfully view the balance of their accounts.
+	Preconditions:
+		The user is logged in.
+		The user has at least one active account.
+	Test Steps:
+		1. Navigate to the "Account Overview" page.
+		2. Select an account (e.g., Checking or Savings).
+		3, Click on the "View Balance" button.
+	Expected Result:
+		The account balance is displayed correctly.
+		The balance is updated in real-time based on any recent transactions.
+	Postconditions:
+		The user is able to see the updated balance on their dashboard.
+	Priority: Medium
+
+***************************************************************************************************************
+
+Test Strategy
+	Integration Testing:
+	Verifies that different components of the system work together (e.g., login system, payment gateway, database).
+	Example: Ensuring that the transfer function properly updates the database and reflects the change in account balances.
+
+	Functional Testing:
+	Ensures that all the core functionalities of the system work as expected (e.g., logging in, transferring money, balance checking).
+	Example: Testing the complete flow from logging in to completing a transfer between accounts.
+
+	Security Testing:
+	Focuses on verifying that sensitive data, such as user credentials and financial information, is kept secure.
+	Example: Ensuring that passwords are encrypted during login and that multi-factor authentication (MFA) is enabled for transfers.
+
+	System Testing:
+	Comprehensive testing of the entire application to ensure all features, including user interface, APIs, and backend services, work together seamlessly.
+	Example: Full end-to-end testing where the user logs in, performs a transaction, checks the balance, and logs out.
+
+	User Acceptance Testing (UAT):
+	Performed by end-users to ensure that the system meets the business requirements and is easy to use.
+	Example: End users test the application to ensure it provides a user-friendly interface for managing their finances.
+
+Testing Types:
+	Manual Testing:
+	For exploratory, usability, and ad-hoc testing, where the test cannot be easily automated.
+	Examples: Checking the UI responsiveness, testing the usability of the banking dashboard, verifying the correctness of transaction messages.
+
+	Automated Testing:
+	Automated tests will be created for repetitive and critical functionalities like login, balance inquiry, and fund transfers.
+	Tools: Selenium, pytest will be used for automating functional tests, while JMeter can be used for load testing.
+	Example: Automating the "Transfer Money" test case to ensure it works after every deployment.
+Tools:
+	Selenium WebDriver: For automating web application tests.
+	pytest: For organizing automated test cases and running them as part of the CI pipeline.
+	Jenkins: For continuous integration (CI) and running automated tests on every deployment.
+	JMeter: For load and performance testing to simulate multiple users interacting with the online banking system simultaneously.
+
+**************************************************************************************************************
+
+3. Test Rationale
+
+Why Focus on Functional Testing?
+- Core Banking Features: The online banking system is built around specific, core features—account management, fund transfers, balance inquiries—that need to function without fail.
+- End-to-End Scenarios: Functional testing ensures that the entire user flow, from login to performing a transaction and checking the balance, works correctly.
+
+Why Load and Performance Testing?
+- Scalability: The online banking system must support high volumes of concurrent users, especially during peak times. Load testing ensures the system can scale appropriately without crashing or slowing down.
+- Performance under Load: Ensuring quick response times (e.g., quick balance updates, fast transfer processing) is essential for user satisfaction.
+
+Why Security Testing?
+- Sensitive Data: Since the application deals with highly sensitive data, including bank account details and financial transactions, it’s critical to perform thorough security testing to identify vulnerabilities like SQL injection, cross-site scripting (XSS), and man-in-the-middle (MITM) attacks.
+- Compliance: Security testing ensures the application meets industry standards, such as PCI DSS (Payment Card Industry Data Security Standard), to protect user information.
+
